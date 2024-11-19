@@ -77,6 +77,27 @@ void Headman_Mullayarov::draw(QPainter& painter,int* x, int* y, int* arrayLens){
     *(y) += metrics.height() + 10; // Обновление координаты y с учетом высоты текста
 }
 
-void Headman_Mullayarov::drawLables(QWidget *dialog, QPoint point, bool readOnly){
+void Headman_Mullayarov::drawLables(QWidget *dialog, bool readOnly, QFormLayout* layout){
+    Student_Mullayarov::drawLables(dialog, readOnly, layout);
+    lineEdit5 = new QLineEdit(dialog);
+    QLabel *label5 = new QLabel("Должность: ", dialog);
+    lineEdit5->setText(QString::fromLocal8Bit(position));
+    lineEdit5->setReadOnly(readOnly);
+    QLabel *label6 = new QLabel("Количество предметов: ", dialog);
+    lineEdit6 =new QLineEdit(dialog);
+    lineEdit6->setText(QString::fromLocal8Bit(to_string(amount_subjects)));
+    lineEdit6->setReadOnly(readOnly);
+    layout->addRow(label5, lineEdit5);
+    layout->addRow(label6, lineEdit6);
+}
 
+void Headman_Mullayarov::edit(){
+    Student_Mullayarov::edit();
+    position = lineEdit5->text().toLocal8Bit().toStdString();
+    amount_subjects = lineEdit6->text().toInt();
+}
+void Headman_Mullayarov::add(){
+    Student_Mullayarov::add();
+    position = lineEdit5->text().toLocal8Bit().toStdString();
+    amount_subjects = lineEdit6->text().toInt();
 }

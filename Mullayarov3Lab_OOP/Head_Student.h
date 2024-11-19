@@ -19,8 +19,9 @@ public:
     void createStudent(istream& in) override;
     int* countLen() override;
     void draw(QPainter& painter,int* x, int* y, int* arrayLens) override;
-    virtual void drawLables(QWidget *dialog, QPoint point, bool readOnly) override;
-    virtual void edit() override;
+    void drawLables(QWidget *dialog, bool readOnly, QFormLayout* layout) override;
+    void edit() override;
+    void add() override;
     template<class Archive>
     void save(Archive& ar, const unsigned int version) const
     {

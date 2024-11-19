@@ -69,7 +69,6 @@ void MyWidget::paintEvent(QPaintEvent *event){
         setMinimumSize(totalWidth,totalHeight);
         x = 10;
         group.drawStudents(painter,&x,&y, arrayMaxLen);
-
     }
 
     delete[] arrayMaxLen;

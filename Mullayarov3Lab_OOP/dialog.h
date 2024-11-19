@@ -19,14 +19,19 @@ public:
     ~Dialog();
     void FillBox(int index);
     void setWidget(MyWidget* widget);
+    QComboBox* getComboBox();
 
-
+    static void deleteLayout(QLayout* layout);
 private slots:
     void on_comboBox_activated(int index);
 
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::Dialog *ui;

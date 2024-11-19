@@ -119,125 +119,47 @@ Student_Mullayarov::~Student_Mullayarov()
 {
 }
 
-void Student_Mullayarov::drawLables(QWidget *dialog, QPoint point, bool readOnly){
+void Student_Mullayarov::drawLables(QWidget *dialog, bool readOnly, QFormLayout* layout){
 
-    // int dy = 30;
-    // lineEdit = std::make_shared<QLineEdit>(dialog);
-    // lineEdit->setText("Имя: " + QString::fromStdString(name));
-    // lineEdit->setReadOnly(true);
-    // lineEdit->move(point);
-    // lineEdit->show();
-    // lineEdit1 = std::make_shared<QLineEdit>(dialog);
-    // lineEdit1->setText("Фамилия: " + QString::fromStdString(surname));
-    // lineEdit1->setReadOnly(true);
-    // point.setY(point.y() + dy);
-    // lineEdit1->move(point);
-    // lineEdit1->show();
-    // lineEdit2 = std::make_shared<QLineEdit>(dialog);
-    // lineEdit2->setText("Оценка: " + QString::number(round(mark * 100) / 100, 'f', 1));
-    // lineEdit2->setReadOnly(true);
-    // point.setY(point.y() + dy);
-    // lineEdit2->move(point);
-    // lineEdit2->show();
-    // lineEdit3 = std::make_shared<QLineEdit>(dialog);
-    // lineEdit3->setText("Возраст: " + QString::fromStdString(to_string(age)));
-    // lineEdit3->setReadOnly(true);
-    // point.setY(point.y() + dy);
-    // lineEdit3->move(point);
-    // lineEdit3->show();
-    // point.setX(point.x() + 60);
-    cout << "dsfdsfsdfsdf";
-    cout << lineEdit1;
-    if (lineEdit1 != nullptr && lineEdit2 != nullptr && lineEdit2 != nullptr && lineEdit3 != nullptr && lineEdit4 != nullptr){
-        delete lineEdit1;
-        delete lineEdit2;
-        delete lineEdit3;
-        delete lineEdit4;
-    }
-    int dy = 50;
-    lineEdit1 = new QLineEdit(dialog);
-    QLabel *label1 = new QLabel("Имя: ", dialog);
-    lineEdit1->setText(QString::fromLocal8Bit(name));
-    lineEdit1->setReadOnly(readOnly);
-    lineEdit1->move(point);
-    lineEdit1->show();
-    label1->move(point.x() - 50,point.y());
-    label1->show();
-    QLabel *label2 = new QLabel("Фамилия: ", dialog);
+        lineEdit1 = new QLineEdit(dialog);
+        QLabel *label1 = new QLabel("Имя: ", dialog);
+        lineEdit1->setText(QString::fromLocal8Bit(name));
+        lineEdit1->setReadOnly(readOnly);
 
-    lineEdit2 =new QLineEdit(dialog);
-    lineEdit2->setText(QString::fromLocal8Bit(surname));
-    lineEdit2->setReadOnly(readOnly);
-    point.setY(point.y() + dy);
-    lineEdit2->move(point);
-    lineEdit2->show();
-    label2->move(point.x() - 50,point.y());
-    label2->show();
+        QLabel *label2 = new QLabel("Фамилия: ", dialog);
+        lineEdit2 =new QLineEdit(dialog);
+        lineEdit2->setText(QString::fromLocal8Bit(surname));
+        lineEdit2->setReadOnly(readOnly);
+
         QLabel *label3 = new QLabel("Оценка: ", dialog);
-    lineEdit3 = new QLineEdit(dialog);
-    lineEdit3->setText(QString::number(round(mark * 100) / 100, 'f', 1));
-    lineEdit3->setReadOnly(readOnly);
-    point.setY(point.y() + dy);
-    lineEdit3->move(point);
-    lineEdit3->show();
-    label3->move(point.x() - 50,point.y());
-    label3->show();
+        lineEdit3 = new QLineEdit(dialog);
+        lineEdit3->setText(QString::number(round(mark * 100) / 100, 'f', 1));
+        lineEdit3->setReadOnly(readOnly);
+
         QLabel *label4 = new QLabel("Возраст: ", dialog);
-    lineEdit4 = new QLineEdit(dialog);
-    lineEdit4->setText(QString::fromLocal8Bit(to_string(age)));
-    lineEdit4->setReadOnly(readOnly);
-    point.setY(point.y() + dy);
-    lineEdit4->move(point);
-    lineEdit4->show();
-    label4->move(point.x() - 50,point.y());
-    label4->show();
+        lineEdit4 = new QLineEdit(dialog);
+        lineEdit4->setText(QString::fromLocal8Bit(to_string(age)));
+        lineEdit4->setReadOnly(readOnly);
+
+        layout->addRow(label1, lineEdit1);
+        layout->addRow(label2, lineEdit2);
+        layout->addRow(label3, lineEdit3);
+        layout->addRow(label4, lineEdit4);
+
 
 }
 
 void Student_Mullayarov::edit(){
-    name = lineEdit1->text().toStdString();
-    surname = lineEdit2->text().toStdString();
+    name = lineEdit1->text().toLocal8Bit().toStdString();
+    surname = lineEdit2->text().toLocal8Bit().toStdString();
     mark = lineEdit3->text().toDouble();
     age = lineEdit4->text().toInt();
 }
-// void Student_Mullayarov::lablesForAdding(DialogAdd *dialog, QPoint point){
-//     int dy = 30;
-//     if (lineEdit1 != nullptr && lineEdit2 != nullptr && lineEdit2 != nullptr && lineEdit3 != nullptr && lineEdit4 != nullptr){
-//         delete lineEdit1;
-//         delete lineEdit2;
-//         delete lineEdit3;
-//         delete lineEdit4;
-//     }
-//     lineEdit1 = new QLineEdit(dialog);
-
-//     point.setY(point.y() + dy);
-//     lineEdit1->move(point);
-//     lineEdit1->show();
-//     lineEdit2 = new QLineEdit(dialog);
-
-//     point.setY(point.y() + dy);
-//     lineEdit2->move(point);
-//     lineEdit2->show();
-//     lineEdit3 = new QLineEdit(dialog);
-
-//     point.setY(point.y() + dy);
-//     lineEdit3->move(point);
-//     lineEdit3->show();
-//     lineEdit4 = new QLineEdit(dialog);
-
-//     point.setY(point.y() + dy);
-//     lineEdit4->move(point);
-//     lineEdit4->show();
-//     point.setX(point.x() + 60);
-// }
-
-// void Student_Mullayarov::editStudent(Dialog *dialog){
-//     lineEdit->setReadOnly(false);
-//     lineEdit2->setReadOnly(false);
-//     lineEdit1->setReadOnly(false);
-//     lineEdit3->setReadOnly(false);
 
 
-// }
-
-
+void Student_Mullayarov::add(){
+    name = lineEdit1->text().toLocal8Bit().toStdString();
+    surname = lineEdit2->text().toLocal8Bit().toStdString();
+    mark = lineEdit3->text().toDouble();
+    age = lineEdit4->text().toInt();
+}

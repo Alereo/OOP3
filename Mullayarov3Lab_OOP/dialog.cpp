@@ -21,19 +21,9 @@ Dialog::~Dialog()
 void Dialog::on_comboBox_activated(int index)
 {
     Group_Mullayarov group = widget->group;
+    deleteLayout(ui->formLayout);
     if (!group.students.empty()){
-        // for (int i = ui->gridLayout->count() - 1; i >= 0; --i) { // Iterate backward to avoid index issues
-        //     QLayoutItem* item = ui->gridLayout->itemAt(i);
-        //     if (item && item->widget() && item->widget()->inherits("QLabel")) {
-        //         QWidget* widget = item->widget();
-        //         ui->gridLayout->removeItem(item); // Remove from layout FIRST
-        //         delete widget;                    // Then delete the widget
-        //         delete item;                     // Then delete the layout item
-        //     }
-        // }
-        cout << index;
-        group.students[index]->drawLables(this,QPoint(300,20),true);
-        // this->ui->comboBox->setCurrentIndex(0);
+      group.students[index]->drawLables(this,true, ui->formLayout);
     }
 }
 
@@ -55,11 +45,13 @@ void Dialog::setWidget(MyWidget *myWidget){
 
 void Dialog::on_pushButton_clicked()
 {
-    int index = ui->comboBox->currentIndex();
-    DialogAdd *dialog = new DialogAdd(this);
-    dialog->EditStudent(index);
-    int result = dialog->exec();
-    ui->comboBox->activated(index);
+    if (!widget->group.students.empty()){
+        int index = ui->comboBox->currentIndex();
+        DialogAdd *dialog = new DialogAdd(this);
+        dialog->EditStudent(index);
+        int result = dialog->exec();
+        ui->comboBox->activated(index);
+    }
 }
 
 
@@ -67,11 +59,42 @@ void Dialog::on_pushButton_2_clicked()
 {
     DialogAdd *dialog = new DialogAdd(this);
     int result = dialog->exec();
-    try {
-        delete dialog;
-        dialog = nullptr;
-    } catch (const std::exception& e) {
-        std::cerr << "Error deleting dialog: " << e.what() << std::endl;
+
+}
+
+
+void Dialog::on_pushButton_3_clicked()
+{
+    int index = ui->comboBox->currentIndex();
+    cout << "first "<< index << endl;
+    if (!widget->group.students.empty()){
+         widget->group.students.erase(widget->group.students.begin() + index);
+        ui->comboBox->removeItem(index);
+        if (index != 0 && index == widget->group.students.size()){
+            index--;
+        }
+        cout << "size"<< widget->group.students.size() - 1 << endl;
+        cout << "second "<< index << endl;
+        ui->comboBox->setCurrentIndex(index);
+        ui->comboBox->activated(index);
     }
+}
+
+void Dialog::deleteLayout(QLayout* layout){
+    while (QLayoutItem* item = layout->takeAt(0)) {
+        if (QWidget* widget = item->widget()) {
+            widget->setParent(nullptr);
+        }
+        delete item;
+    }
+}
+
+QComboBox* Dialog::getComboBox(){
+    return ui->comboBox;
+}
+
+void Dialog::on_pushButton_4_clicked()
+{
+    this->close();
 }
 

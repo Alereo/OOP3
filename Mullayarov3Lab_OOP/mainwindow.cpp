@@ -65,7 +65,6 @@ void MainWindow::save()
 {
     ui->myWidget->save(fileName);
 }
-//errrrorrrrrrrrr
 
 void MainWindow::on_actionMain_dialog_triggered()
 {
@@ -73,10 +72,5 @@ void MainWindow::on_actionMain_dialog_triggered()
     dialog->setWidget(ui->myWidget);
     dialog->FillBox(0);
     int result = dialog->exec();
-    // try {
-    //     delete dialog;
-    //     dialog = nullptr;
-    // } catch (const std::exception& e) {
-    //     std::cerr << "Error deleting dialog: " << e.what() << std::endl;
-    // }
+
 }

@@ -6,32 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>421</width>
-    <height>518</height>
+    <width>555</width>
+    <height>535</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="2">
-    <widget class="QPushButton" name="pushButton">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QCheckBox" name="checkBox">
      <property name="text">
-      <string>Добавить</string>
+      <string>Студент</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
+   <item>
     <widget class="QCheckBox" name="checkBox_2">
      <property name="text">
       <string>Студент с должностью</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QCheckBox" name="checkBox">
+   <item>
+    <layout class="QFormLayout" name="formLayout_2"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
      <property name="text">
-      <string>Студент</string>
+      <string>Добавить</string>
      </property>
     </widget>
    </item>
